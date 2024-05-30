@@ -13,9 +13,7 @@ export default function App() {
   // initial state to store new friend name
   const [friendName, setFriendName] = useState("");
   // initial state to store new friend image
-  const [friendImage, setFriendImage] = useState(
-    "https://i.pravatar.cc/150?img=45"
-  );
+  const [friendImage, setFriendImage] = useState("https://i.pravatar.cc/48");
   const [bill, setBill] = useState("");
   const [myExpense, setMyExpense] = useState("");
 
@@ -37,10 +35,11 @@ export default function App() {
     e.preventDefault();
     if (!friendName || !friendImage) return;
 
+    const id = crypto.randomUUID();
     const newFriend = {
-      id: crypto.randomUUID(),
+      id: id,
       name: friendName,
-      image: friendImage,
+      image: `${friendImage}?=${id}`,
       balance: 0,
     };
     addFriend(newFriend);
